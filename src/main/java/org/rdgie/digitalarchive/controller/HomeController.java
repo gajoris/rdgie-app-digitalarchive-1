@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.rdgie.digitalarchive.domain.User;
+import org.rdgie.digitalarchive.form.UploadItem;
 import org.rdgie.digitalarchive.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,8 @@ public class HomeController {
 		String password = request.getParameter("password");
 
 		User user = new User(username, password);
-
+		
+		model.addAttribute("uploadItem",new UploadItem());
 		if (userSerice.checkUser(user) != null) {
 			return "savereport";
 		} else {
